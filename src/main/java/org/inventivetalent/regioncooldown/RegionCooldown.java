@@ -29,6 +29,8 @@ public class RegionCooldown extends JavaPlugin implements Listener {
 	public void on(PlayerInteractEvent event) {
 		double cooldown = flagInjector.getCooldown(event.getPlayer().getLocation());
 		if (cooldown != -1) {
+			cooldown = Math.min(1024, cooldown);
+			cooldown = Math.max(0, cooldown);
 			event.getPlayer().getAttribute(Attribute.GENERIC_ATTACK_SPEED).setBaseValue(cooldown);
 		}
 	}
