@@ -8,6 +8,7 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.inventivetalent.apihelper.APIManager;
 import org.inventivetalent.regionapi.RegionAPI;
+import org.mcstats.MetricsLite;
 
 public class RegionCooldown extends JavaPlugin implements Listener {
 
@@ -23,6 +24,14 @@ public class RegionCooldown extends JavaPlugin implements Listener {
 		APIManager.initAPI(RegionAPI.class);
 		Bukkit.getPluginManager().registerEvents(flagInjector = new FlagInjector(), this);
 		Bukkit.getPluginManager().registerEvents(this, this);
+
+		try {
+			MetricsLite metrics = new MetricsLite(this);
+			if (metrics.start()) {
+				getLogger().info("Metrics started");
+			}
+		} catch (Exception e) {
+		}
 	}
 
 	@EventHandler
