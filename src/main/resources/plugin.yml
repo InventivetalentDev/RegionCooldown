@@ -1,0 +1,7 @@
+name: RegionCooldown
+main: org.inventivetalent.regioncooldown.RegionCooldown
+author: inventivetalent
+version: ${project.version}
+
+softdepend: [RegionAPI]
+loadbefore: [WorldGuard]
